@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { NoFoundComponent } from './no-found/no-found.component';
 import { FilterComponent } from './filter/filter.component';
+import { ShareModule } from '../share/share.module';
 
 
 
@@ -15,7 +16,8 @@ import { FilterComponent } from './filter/filter.component';
     FilterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ShareModule
   ],
   exports: [
     HomeComponent,
