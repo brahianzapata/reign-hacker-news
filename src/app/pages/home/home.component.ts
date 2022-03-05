@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
     newsByTecnology: Hit[] = [];
     pagination: number = 0;
     totalPages: number = 10;
+    isLoading: boolean = false;
 
     constructor( 
         private searchByTecnologyService: SearchByTecnologyService 
@@ -51,8 +52,10 @@ export class HomeComponent implements OnInit {
     }
 
     getDataApi( typeTecnology: string, page: number ) {
+        this.isLoading = true;
         this.searchByTecnologyService.getNewsByTecnology(typeTecnology === '0' ? 'angular': typeTecnology , page).subscribe( (resp: ResponseNew) => {
             this.newsByTecnology = resp.hits;
+            this.isLoading = false;
         }); 
     }
 
