@@ -1,4 +1,4 @@
-export interface Root {
+export interface ResponseNew {
     hits: Hit[]
     nbHits: number
     page: number

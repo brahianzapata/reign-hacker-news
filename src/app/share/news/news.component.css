@@ -1,0 +1,45 @@
+
+.card-custom {
+    margin: 0.25rem;
+    border: #979797 solid 1px;
+    border-radius: 5px;
+}
+
+.color-icon {
+    color: red;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+}
+
+.card-title {
+    width: 100%;
+    height: 20px;
+    margin: 6px 0 0;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: 0.25px;
+    color: #6b6b6b;
+}
+
+.card-text {
+    width: 100%;
+    margin-left: 10px;
+    height: 13px;
+    margin: 16px 325px 7px 8px;
+    font-family: Roboto;
+    font-size: 11px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #767676;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Hit } from 'src/app/interface/reponse-news';
 
 @Component({
   selector: 'app-news',
@@ -10,6 +11,14 @@ export class NewsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addFavorite(){
+
+  }
+
+  removeFavorite(){
+
   }
 
 }
