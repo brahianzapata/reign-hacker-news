@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Hit, HitFavorite, ResponseNew } from '../interface/reponse-news';
+import { HitFavorite, ResponseNew } from '../interface/reponse-news';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,6 @@ export class SearchByTecnologyService {
   }
 
   getNewsByTecnology( tecnology: string, page: number ): Observable<ResponseNew>{
-    console.log('getNewsByTecnologyServices -> ', tecnology, page);
     return this.http.get<ResponseNew>(`${ this.baseUrl }/search_by_date?query=${ tecnology  }&page=${ page }`);
   }
 
@@ -33,7 +32,6 @@ export class SearchByTecnologyService {
   agregarFavorito( hit: HitFavorite): void{
     this.newsByTecnologyLocalStorage.push(hit);
     this.guardarLocalStorage();
-    console.log(JSON.parse(localStorage.getItem('favoritesHits')  || '{}'));
   }
 
   eliminarFavorito( story_id: number ): void{

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HighlightResult, Hit } from 'src/app/interface/reponse-news';
 import { SearchByTecnologyService } from 'src/app/services/search-by-tecnology.service';
 
 @Component({
@@ -24,7 +23,6 @@ export class NewsComponent implements OnInit {
     }
 
     addFavorite() {
-        console.log('addFavorite');
         this.searchByTecnologyService.agregarFavorito({
           author: this.author, 
           story_title: this.story_title, 
@@ -39,5 +37,9 @@ export class NewsComponent implements OnInit {
         this.searchByTecnologyService.eliminarFavorito(this.story_id);
     }
 
-
+    onNavigate() {
+        if( this.story_url !== null ) {
+            window.open( this.story_url, '_blank');
+        }
+    }
 }

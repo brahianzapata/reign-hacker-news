@@ -1,14 +1,6 @@
-
-    
-<div class="row p-2" *ngIf="searchByTecnologyService.newsByTecnologyLocalStorage.length > 0">
+<div class="row m-5" *ngIf="searchByTecnologyService.newsByTecnologyLocalStorage.length > 0">
     <div class="col-6" *ngFor="let news of searchByTecnologyService.newsByTecnologyLocalStorage">
-        <app-news 
-            [author]="news.author" 
-            [story_title]="news.story_title" 
-            [story_url]="news.story_url" 
-            [created_at]="news.created_at"
-            [story_id]="news.story_id"
-            [url]="news.url">
+        <app-news [author]="news.author" [story_title]="news.story_title" [story_url]="news.story_url" [created_at]="news.created_at" [story_id]="news.story_id" [url]="news.url">
         </app-news>
     </div>
 </div>
@@ -16,4 +8,3 @@
 <div class="row content-no-favorites" *ngIf="searchByTecnologyService.newsByTecnologyLocalStorage.length === 0">
     <h4>NO FAVORITES</h4>
 </div>
-

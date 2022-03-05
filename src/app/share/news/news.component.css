@@ -1,8 +1,8 @@
-
 .card-custom {
     margin: 0.25rem;
     border: #979797 solid 1px;
     border-radius: 5px;
+    height: 20vh;
 }
 
 .color-icon {
@@ -10,10 +10,15 @@
     cursor: pointer;
 }
 
+.card-custom:hover {
+    opacity: 0.4;
+    cursor: pointer;
+}
+
 .card-header {
     display: flex;
     align-items: center;
-    padding: 25px;
+    padding: 5%;
 }
 
 .card-title {
@@ -21,7 +26,7 @@
     height: 20px;
     margin-left: 10px;
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
@@ -36,7 +41,7 @@
     height: 13px;
     margin: 16px 325px 7px 8px;
     font-family: Roboto;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

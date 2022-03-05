@@ -1,6 +1,9 @@
-
-
 .paginator {
     margin-left: 40%;
     margin-top: 1.5rem;
+}
+
+.selector {
+    margin-left: 10%;
+    width: 30%;
 }

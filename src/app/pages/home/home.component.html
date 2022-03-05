@@ -1,4 +1,4 @@
-<div class="row p-5 w-50">
+<div class="row selector">
     <select [(ngModel)]="opcionSeleccionado" (change)="getNewByTecnology(true)" class="form-select">
         <option value="0">Select your news</option>
         <option *ngFor="let dato of datos">
@@ -7,7 +7,7 @@
     </select>
 </div>
 
-<div class="row p-2" *ngIf="!isLoading">
+<div class="row m-5" *ngIf="!isLoading">
     <div class="col-6" *ngFor="let news of newsByTecnology">
         <app-news [author]="news.author" [story_title]="news.story_title" [story_url]="news.story_url" [created_at]="news.created_at" [story_id]="news.story_id" [url]="news.url">
         </app-news>
@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="row p-2" *ngIf="isLoading">
+<div class="row m-5" *ngIf="isLoading">
     <h6>is loading ....</h6>
 </div>
 
