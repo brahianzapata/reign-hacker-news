@@ -24,11 +24,26 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.cargarChoose();
         this.getNewByTecnology();
     }
 
-    getNewByTecnology() {
-        
+    cargarChoose(): void{
+        if (localStorage.getItem('chooseTecnology')){
+            this.opcionSeleccionado = localStorage.getItem('chooseTecnology')  || '';
+        }else{
+            this.opcionSeleccionado = '0';
+        }
+    }
+
+    guardarLocalStorage(tecnology: string): void{
+        localStorage.setItem('chooseTecnology', tecnology);
+    }
+
+    getNewByTecnology(guardar: boolean = false) {
+        if(guardar === true ){
+            this.guardarLocalStorage(this.opcionSeleccionado);
+        }
         // Pasamos el valor seleccionado a la variable verSeleccion
         this.verSeleccion = this.opcionSeleccionado;
         this.pagination = 0;
@@ -36,7 +51,7 @@ export class HomeComponent implements OnInit {
     }
 
     getDataApi( typeTecnology: string, page: number ) {
-        this.searchByTecnologyService.getNewsByTecnology(typeTecnology === '0' ? 'angular': typeTecnology  , page).subscribe( (resp: ResponseNew) => {
+        this.searchByTecnologyService.getNewsByTecnology(typeTecnology === '0' ? 'angular': typeTecnology , page).subscribe( (resp: ResponseNew) => {
             this.newsByTecnology = resp.hits;
         }); 
     }

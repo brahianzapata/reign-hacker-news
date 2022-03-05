@@ -1,7 +1,7 @@
 
 
 <div class="row p-5 w-50">
-    <select [(ngModel)]="opcionSeleccionado" (change)="getNewByTecnology()" class="form-select">
+    <select [(ngModel)]="opcionSeleccionado" (change)="getNewByTecnology(true)" class="form-select">
         <option value="0">Select your news</option>
         <option *ngFor="let dato of datos">
           {{ dato }}
@@ -15,7 +15,9 @@
             [author]="news.author" 
             [story_title]="news.story_title" 
             [story_url]="news.story_url" 
-            [created_at]="news.created_at">
+            [created_at]="news.created_at"
+            [story_id]="news.story_id"
+            [url]="news.url">
         </app-news>
     </div>
 </div>

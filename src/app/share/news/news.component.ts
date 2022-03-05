@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HighlightResult, Hit } from 'src/app/interface/reponse-news';
+import { SearchByTecnologyService } from 'src/app/services/search-by-tecnology.service';
 
 @Component({
   selector: 'app-news',
@@ -7,22 +9,35 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  @Input() author: string = '';
-  @Input() story_title: string = '';
-  @Input() story_url: string = '';
-  @Input() created_at: string = '';
+    @Input() author: string = '';
+    @Input() story_title: string = '';
+    @Input() story_url: string = '';
+    @Input() created_at: string = '';
+    @Input() url: string = '';
+    @Input() story_id: number = 0;
 
-  constructor() { }
+    constructor(
+        private searchByTecnologyService: SearchByTecnologyService
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  addFavorite(){
+    addFavorite() {
+        console.log('addFavorite');
+        this.searchByTecnologyService.agregarFavorito({
+          author: this.author, 
+          story_title: this.story_title, 
+          story_url: this.story_url, 
+          created_at: this.created_at, 
+          url: this.url, 
+          story_id: this.story_id
+        });
+    }
 
-  }
+    removeFavorite() {
+        this.searchByTecnologyService.eliminarFavorito(this.story_id);
+    }
 
-  removeFavorite(){
-
-  }
 
 }

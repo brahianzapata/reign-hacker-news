@@ -30,6 +30,15 @@ export interface ResponseNew {
     _highlightResult: HighlightResult
   }
 
+  export interface HitFavorite {
+    created_at: string
+    url: any
+    author: string
+    story_id: number
+    story_title: string
+    story_url: string
+  }
+
   export interface HighlightResult {
     author: Author
     comment_text: CommentText

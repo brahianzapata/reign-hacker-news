@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Hit, ResponseNew } from '../interface/reponse-news';
+import { Hit, HitFavorite, ResponseNew } from '../interface/reponse-news';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Hit, ResponseNew } from '../interface/reponse-news';
 export class SearchByTecnologyService {
 
   private baseUrl: string = 'https://hn.algolia.com/api/v1/';
-  public newsByTecnologyLocalStorage: Hit[] = [];
+  public newsByTecnologyLocalStorage: HitFavorite[] = [];
 
   constructor( private http: HttpClient ) { 
     this.cargarFavoritos();
@@ -23,26 +23,32 @@ export class SearchByTecnologyService {
   /* Favoritos */ 
 
   cargarFavoritos(): void{
-    if (localStorage.getItem('favoritesCountries')){
-      this.newsByTecnologyLocalStorage = JSON.parse(localStorage.getItem('favoritesCountries')  || '{}');
+    if (localStorage.getItem('favoritesHits')){
+      this.newsByTecnologyLocalStorage = JSON.parse(localStorage.getItem('favoritesHits')  || '{}');
     }else{
       this.newsByTecnologyLocalStorage = [];
     }
   }
 
-  agregarFavorito( hit: Hit): void{
+  agregarFavorito( hit: HitFavorite): void{
     this.newsByTecnologyLocalStorage.push(hit);
     this.guardarLocalStorage();
+    console.log(JSON.parse(localStorage.getItem('favoritesHits')  || '{}'));
   }
 
-  eliminarFavorito( title: string): void{
-    this.newsByTecnologyLocalStorage = this.newsByTecnologyLocalStorage.filter( (hit: Hit) => hit.title !== title);
+  eliminarFavorito( story_id: number ): void{
+    this.newsByTecnologyLocalStorage = this.newsByTecnologyLocalStorage.filter( (hit: HitFavorite) => hit.story_id !== story_id);
     this.guardarLocalStorage();
   }
 
   guardarLocalStorage(): void{
-    localStorage.setItem('favoritesCountries', JSON.stringify(this.newsByTecnologyLocalStorage));
+    localStorage.setItem('favoritesHits', JSON.stringify(this.newsByTecnologyLocalStorage));
     this.cargarFavoritos();
+  }
+
+  buscarFavorito( story_id: number, author: string ): HitFavorite {
+      return this.newsByTecnologyLocalStorage.filter( (hit: HitFavorite) =>  
+          hit.story_id === story_id && hit.author === author)[0];
   }
 
 }
