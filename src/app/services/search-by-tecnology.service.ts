@@ -9,19 +9,15 @@ import { Hit, ResponseNew } from '../interface/reponse-news';
 export class SearchByTecnologyService {
 
   private baseUrl: string = 'https://hn.algolia.com/api/v1/';
-
-  public newsByTecnology: Hit[] = [];
   public newsByTecnologyLocalStorage: Hit[] = [];
 
   constructor( private http: HttpClient ) { 
-    this.getNewsByTecnology('Angular').subscribe( (resp: ResponseNew) => {
-      this.newsByTecnology = resp.hits;
-    }); 
     this.cargarFavoritos();
   }
 
-  getNewsByTecnology( tecnology: string ): Observable<ResponseNew>{
-    return this.http.get<ResponseNew>(`${ this.baseUrl }/search_by_date?query=${ tecnology  }&page=0`);
+  getNewsByTecnology( tecnology: string, page: number ): Observable<ResponseNew>{
+    console.log('getNewsByTecnologyServices -> ', tecnology, page);
+    return this.http.get<ResponseNew>(`${ this.baseUrl }/search_by_date?query=${ tecnology  }&page=${ page }`);
   }
 
   /* Favoritos */ 

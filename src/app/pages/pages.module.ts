@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { NoFoundComponent } from './no-found/no-found.component';
-import { FilterComponent } from './filter/filter.component';
 import { ShareModule } from '../share/share.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,18 +12,17 @@ import { ShareModule } from '../share/share.module';
   declarations: [
     HomeComponent,
     FavoritesComponent,
-    NoFoundComponent,
-    FilterComponent
+    NoFoundComponent
   ],
   imports: [
     CommonModule,
-    ShareModule
+    ShareModule,
+    FormsModule
   ],
   exports: [
     HomeComponent,
     FavoritesComponent,
-    NoFoundComponent,
-    FilterComponent
+    NoFoundComponent
   ]
 })
 export class PagesModule { }
