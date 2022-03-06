@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     constructor( 
         private searchByTecnologyService: SearchByTecnologyService 
     ) { 
+        // Listado del combo box
         this.datos = ['angular', 'reactjs', 'vuejs'];
     }
 
@@ -51,6 +52,9 @@ export class HomeComponent implements OnInit {
         this.getDataApi( this.verSeleccion, this.pagination );
     }
 
+    /**
+     * Permite obtener elementos de una api de forma personalizado que lo pueda utilizar de diferentes maneras
+     */
     getDataApi( typeTecnology: string, page: number ) {
         this.isLoading = true;
         this.searchByTecnologyService.getNewsByTecnology(typeTecnology === '0' ? 'angular': typeTecnology , page).subscribe( (resp: ResponseNew) => {
@@ -59,6 +63,10 @@ export class HomeComponent implements OnInit {
         }); 
     }
 
+
+    /**
+     * Permite realizar la navegacion entre page utilizando el servicio getDataApi 
+     */
     changePage( page: number) {
         this.pagination = page;
         this.getDataApi( this.verSeleccion, this.pagination );
@@ -70,9 +78,7 @@ export class HomeComponent implements OnInit {
     }
 
     changeRemovePage( page: number ) {
-        if( this.pagination === 0){
-            return;
-        }
+        if( this.pagination === 0) return;
         this.pagination += page;
         this.getDataApi( this.verSeleccion, this.pagination );
     }

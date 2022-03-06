@@ -1,6 +1,4 @@
-
-
 .menu-component {
-    margin-left: 40%;
     display: flex;
+    justify-content: center;
 }

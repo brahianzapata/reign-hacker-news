@@ -15,11 +15,14 @@ export class SearchByTecnologyService {
     this.cargarFavoritos();
   }
 
+  /**
+   * realiza el consumo al servicios de las noticias acerca de las tecnologias
+   */
   getNewsByTecnology( tecnology: string, page: number ): Observable<ResponseNew>{
     return this.http.get<ResponseNew>(`${ this.baseUrl }/search_by_date?query=${ tecnology  }&page=${ page }`);
   }
 
-  /* Favoritos */ 
+  /* CRUD de los favoritos */ 
 
   cargarFavoritos(): void{
     if (localStorage.getItem('favoritesHits')){
@@ -29,21 +32,24 @@ export class SearchByTecnologyService {
     }
   }
 
-  agregarFavorito( hit: HitFavorite): void{
-    this.newsByTecnologyLocalStorage.push(hit);
-    this.guardarLocalStorage();
-  }
-
-  eliminarFavorito( story_id: number ): void{
-    this.newsByTecnologyLocalStorage = this.newsByTecnologyLocalStorage.filter( (hit: HitFavorite) => hit.story_id !== story_id);
-    this.guardarLocalStorage();
-  }
-
   guardarLocalStorage(): void{
     localStorage.setItem('favoritesHits', JSON.stringify(this.newsByTecnologyLocalStorage));
     this.cargarFavoritos();
   }
 
+  agregarFavorito( hit: HitFavorite): void{
+    this.newsByTecnologyLocalStorage.push(hit);
+    this.guardarLocalStorage();
+  }
+
+  eliminarFavorito( story_id: number, author: string  ): void{
+    this.newsByTecnologyLocalStorage = this.newsByTecnologyLocalStorage.filter( (hit: HitFavorite) => 
+          hit.story_id !== story_id && hit.author !== author );
+    this.guardarLocalStorage();
+  }
+
+
+  // Es utilizado para realizar la comparación de los favoritos por medio del pipe personalizado
   buscarFavorito( story_id: number, author: string ): HitFavorite {
       return this.newsByTecnologyLocalStorage.filter( (hit: HitFavorite) =>  
           hit.story_id === story_id && hit.author === author)[0];

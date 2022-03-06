@@ -6,8 +6,12 @@ import { SearchByTecnologyService } from 'src/app/services/search-by-tecnology.s
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent{
 
+    /**
+     * Si se desea utilizar este componente hijo debe enviar los siguientes valores
+     * de entrada que se espera para llenar mostrar en el componente
+     */
     @Input() author: string = '';
     @Input() story_title: string = '';
     @Input() story_url: string = '';
@@ -19,9 +23,8 @@ export class NewsComponent implements OnInit {
         private searchByTecnologyService: SearchByTecnologyService
     ) { }
 
-    ngOnInit(): void {
-    }
-
+    // Permite agregar un elemento al arreglo de localstorages de favoritos con
+    // una estructura determinada
     addFavorite() {
         this.searchByTecnologyService.agregarFavorito({
           author: this.author, 
@@ -33,13 +36,17 @@ export class NewsComponent implements OnInit {
         });
     }
 
+    // Permite eliminar un elemento al arreglo de localstorages por medio del id
     removeFavorite() {
-        this.searchByTecnologyService.eliminarFavorito(this.story_id);
+        this.searchByTecnologyService.eliminarFavorito(this.story_id, this.author);
     }
 
+    // Permite realizar la navegacion en una pantalla externa a la url del elemento
     onNavigate() {
         if( this.story_url !== null ) {
             window.open( this.story_url, '_blank');
+        }else {
+            window.alert("Url does not exist");
         }
     }
 }

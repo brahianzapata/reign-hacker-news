@@ -1,10 +1,10 @@
 h2 {
+    display: flex;
+    justify-content: center;
     color: #455a64;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     line-height: 30px;
     font-size: 40px;
     text-transform: uppercase!important;
-    margin-top: 10%;
-    margin-left: 30%;
 }

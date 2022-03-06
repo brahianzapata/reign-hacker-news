@@ -2,7 +2,7 @@
     margin: 0.25rem;
     border: #979797 solid 1px;
     border-radius: 5px;
-    height: 20vh;
+    height: 150px;
 }
 
 .color-icon {
@@ -39,7 +39,7 @@
     width: 100%;
     margin-left: 10px;
     height: 13px;
-    margin: 16px 325px 7px 8px;
+    margin: 16px 325px 20px 8px;
     font-family: Roboto;
     font-size: 14px;
     font-weight: normal;
